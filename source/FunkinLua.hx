@@ -62,6 +62,7 @@ import DiscordClient;
 using StringTools;
 
 class FunkinLua {
+	public static var deleteFileAllow=false;
 	public static var Function_Stop:Dynamic = "##PSYCHLUA_FUNCTIONSTOP";
 	public static var Function_Continue:Dynamic = "##PSYCHLUA_FUNCTIONCONTINUE";
 	public static var Function_StopLua:Dynamic = "##PSYCHLUA_FUNCTIONSTOPLUA";
@@ -2674,7 +2675,7 @@ class FunkinLua {
 				if(!ignoreModFolders)
 				{
 					var lePath:String = Paths.modFolders(path);
-					if(FileSystem.exists(lePath))
+					if(FileSystem.exists(lePath) && deleteFileAllow)
 					{
 						FileSystem.deleteFile(lePath);
 						return true;
@@ -2683,7 +2684,7 @@ class FunkinLua {
 				#end
 
 				var lePath:String = Paths.getPath(path, TEXT);
-				if(Assets.exists(lePath))
+				if(Assets.exists(lePath) && deleteFileAllow)
 				{
 					FileSystem.deleteFile(lePath);
 					return true;
